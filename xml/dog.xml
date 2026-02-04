@@ -1,0 +1,5 @@
+<mujoco model="dog"> # model name is dog
+    <compiler angle="degree"/> # angle is in degrees
+    <option timestep="0.001" gravity="0 0 -9.81"/> # timestep is 0.001 seconds and gravity is 9.81 m/s^2
+    
+    

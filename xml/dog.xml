@@ -1,5 +1,30 @@
-<mujoco model="dog"> # model name is dog
-    <compiler angle="degree"/> # angle is in degrees
-    <option timestep="0.001" gravity="0 0 -9.81"/> # timestep is 0.001 seconds and gravity is 9.81 m/s^2
-    
-    
+<mujoco model="dog">
+  <compiler angle="degree"/>
+  <option timestep="0.001" gravity="0 0 -9.81"/>
+
+  <default>
+    <geom type="box" size="0.05 0.05 0.05" density="500" rgba="0.55 0.35 0.15 1"/>
+  </default>
+
+  <worldbody>
+    <!-- Block 2x10x2 + Sphere: box bottom at sphere center -->
+    <body name="block_sphere" pos="0.4 0 0.3">
+      <freejoint name="block_sphere_free"/>
+      <geom name="sphere_geom" type="sphere" size="0.02" pos="0 0 0" rgba="0.55 0.35 0.15 1"/>
+      <geom name="block_geom" type="box" size="0.01 0.01 0.05" pos="0 0 0.05" rgba="0.55 0.35 0.15 1"/>
+    </body>
+
+    <!-- Block: 6cm x 40cm x 6cm (x x y x h) -->
+    <body name="block2" pos="-0.4 0 0.3">
+      <freejoint name="block2_free"/>
+      <geom name="block2_geom" type="box" size="0.03 0.20 0.03" pos="0 0 0" rgba="0.55 0.35 0.15 1"/>
+    </body>
+
+    <!-- Block: 4cm x 10cm x 4cm (x x y x h) -->
+    <body name="block3" pos="0 0 0">
+      <freejoint name="block3_free"/>
+      <geom name="block3_geom" type="box" size="0.02 0.05 0.02" pos="0 0 0" rgba="0.55 0.35 0.15 1"/>
+    </body>
+
+  </worldbody>
+</mujoco>

@@ -4,6 +4,8 @@
 
   <default>
     <geom type="box" size="0.05 0.05 0.05" density="500" rgba="0.55 0.35 0.15 1"/>
+    <joint limited="true" range="-90 90" damping="0.1" stiffness="1"/>
+    <motor ctrllimited="true" ctrlrange="-20 20"/>
   </default>
 
   <worldbody>
@@ -12,19 +14,50 @@
       <freejoint name="root_free"/>
       <geom name="torso_geom" type="box" size="0.03 0.20 0.03" pos="0 0 0" rgba="0.55 0.35 0.15 1"/>
 
-      <!-- Legs 4x10x4 on side faces (옆면): x=±0.03, front/rear at y=±0.20, z=0 -->
-      <body name="leg_fl" pos="0.05 0.20 0">
-        <geom name="leg_fl_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+      <!-- Hip: left-right swing (axis Y); Knee: front-back bend (axis X) -->
+      <body name="leg_fl" pos="0.03 0.20 0">
+        <joint name="j_fl_hip" type="hinge" axis="0 1 0" pos="0 0 0"/>
+        <geom name="leg_fl_upper_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+        <body name="leg_fl_lower" pos="0 0 -0.04">
+          <joint name="j_fl_knee" type="hinge" axis="1 0 0" pos="0 0 0"/>
+          <geom name="leg_fl_lower_geom" type="box" size="0.01 0.01 0.05" pos="0 0 -0.05" rgba="0.55 0.35 0.15 1"/>
+        </body>
       </body>
-      <body name="leg_fr" pos="-0.05 0.20 0">
-        <geom name="leg_fr_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+      <body name="leg_fr" pos="-0.03 0.20 0">
+        <joint name="j_fr_hip" type="hinge" axis="0 1 0" pos="0 0 0"/>
+        <geom name="leg_fr_upper_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+        <body name="leg_fr_lower" pos="0 0 -0.04">
+          <joint name="j_fr_knee" type="hinge" axis="1 0 0" pos="0 0 0"/>
+          <geom name="leg_fr_lower_geom" type="box" size="0.01 0.01 0.05" pos="0 0 -0.05" rgba="0.55 0.35 0.15 1"/>
+        </body>
       </body>
-      <body name="leg_rl" pos="-0.05 -0.20 0">
-        <geom name="leg_rl_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+      <body name="leg_rl" pos="-0.03 -0.20 0">
+        <joint name="j_rl_hip" type="hinge" axis="0 1 0" pos="0 0 0"/>
+        <geom name="leg_rl_upper_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+        <body name="leg_rl_lower" pos="0 0 -0.04">
+          <joint name="j_rl_knee" type="hinge" axis="1 0 0" pos="0 0 0"/>
+          <geom name="leg_rl_lower_geom" type="box" size="0.01 0.01 0.05" pos="0 0 -0.05" rgba="0.55 0.35 0.15 1"/>
+        </body>
       </body>
-      <body name="leg_rr" pos="0.05 -0.20 0">
-        <geom name="leg_rr_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+      <body name="leg_rr" pos="0.03 -0.20 0">
+        <joint name="j_rr_hip" type="hinge" axis="0 1 0" pos="0 0 0"/>
+        <geom name="leg_rr_upper_geom" type="box" size="0.02 0.05 0.02" pos="0 0 -0.02" rgba="0.55 0.35 0.15 1"/>
+        <body name="leg_rr_lower" pos="0 0 -0.04">
+          <joint name="j_rr_knee" type="hinge" axis="1 0 0" pos="0 0 0"/>
+          <geom name="leg_rr_lower_geom" type="box" size="0.01 0.01 0.05" pos="0 0 -0.05" rgba="0.55 0.35 0.15 1"/>
+        </body>
       </body>
     </body>
   </worldbody>
+
+  <actuator>
+    <motor name="m_fl_hip" joint="j_fl_hip"/>
+    <motor name="m_fl_knee" joint="j_fl_knee"/>
+    <motor name="m_fr_hip" joint="j_fr_hip"/>
+    <motor name="m_fr_knee" joint="j_fr_knee"/>
+    <motor name="m_rl_hip" joint="j_rl_hip"/>
+    <motor name="m_rl_knee" joint="j_rl_knee"/>
+    <motor name="m_rr_hip" joint="j_rr_hip"/>
+    <motor name="m_rr_knee" joint="j_rr_knee"/>
+  </actuator>
 </mujoco>

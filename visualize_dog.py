@@ -99,7 +99,7 @@ def view_dog():
         # ------------------------------------------------------------------------
         # GAIT PARAMETERS
         # ------------------------------------------------------------------------
-        freq = 7.0  # Gait frequency (Hz) - SLOW to keep feet on ground longer
+        freq = 3.0  # Gait frequency (Hz) - SLOW to keep feet on ground longer
         
         # Joint angle amplitudes (radians) - increased for better forward/backward oscillation
         hip_lateral = 0.15      # Hip abduction for wide, stable stance (~9°)

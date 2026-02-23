@@ -18,7 +18,7 @@ def view_dog():
     
     t = 0
     
-    Kp = 25.0  # Proportional gain
+    Kp = 35.0  # Proportional gain
     Kd = 6.0   # Derivative gain
     X_dot_des = np.zeros(12)  # Desired velocities (zero for position control)
 
